@@ -29,4 +29,23 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+
+def make_cal():
+    try:
+        m = int(sys.argv[1])
+        try:
+            y = int(sys.argv[2])
+            print(calendar.month(y, m, 2, 1))
+        except IndexError:
+            print(calendar.month(date.today().year, m, 2, 1))
+        except ValueError:
+            print("Example correct format: 14_cal.py 12 2021")
+    except IndexError:
+        print(calendar.month(date.today().year, date.today().month, 2, 1))
+    except ValueError:
+        print("Example correct format: 14_cal.py 12 2021")
+
+
+make_cal()
